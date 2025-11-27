@@ -43,6 +43,7 @@ public class DiaryRegistry {
         return false;
     }
 
+    
     // public int amountOfEntries() {
     //     int a = entries.size(); 
     //     return a;

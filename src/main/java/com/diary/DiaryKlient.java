@@ -1,4 +1,3 @@
-
 package com.diary;
 import java.util.Scanner;
 
@@ -17,7 +16,7 @@ public class DiaryKlient {
             System.out.println("3. Delete entry");
             System.out.println("4. Register new entry");
             System.out.println("5. Print all authors");
-            System.out.println("6. Search author by name");
+            System.out.println("6. Find entries by author");
             System.out.println("0. Exit");
             System.out.print("Select: ");
 
@@ -44,7 +43,7 @@ public class DiaryKlient {
                     showAllAuthors();
                     break;
                 case 6:
-                    findAuthor();
+                    findAuthorEntries();
                     break;
                 case 0:
                     System.out.println("Exited!");
@@ -56,7 +55,7 @@ public class DiaryKlient {
     }
 
     private static void initializeData() {
-        // Add pre-populated authors
+        
         Author author1 = new Author("First author");
         Author author2 = new Author("Second author");
         Author author3 = new Author("Third author");
@@ -65,20 +64,18 @@ public class DiaryKlient {
         register.registerAuthor(author2);
         register.registerAuthor(author3);
         
-        // Add pre-populated diary entries
+        
         Diary entry1 = new Diary("2025-11-11", "Entry1");
         entry1.addAuthor(author1);
         register.registerEntry(entry1);
         
         Diary entry2 = new Diary("2025-11-12", "Entry2");
         entry2.addAuthor(author2);
-        entry2.addAuthor(author3);
         register.registerEntry(entry2);
         
         Diary entry3 = new Diary("2025-11-11", "Entry3");
         entry3.addAuthor(author3);
         register.registerEntry(entry3);
-        
     }
 
     private static void registerAuthor() {
@@ -109,15 +106,18 @@ public class DiaryKlient {
         Diary entry = new Diary(date, content);
 
         while (true) {
-            System.out.print("Add author to entry (blank to finish): ");
+            System.out.print("Add author to entry (blank for unknown author): ");
             String name = scanner.nextLine();
             if (name.isBlank()) {
-                break;
+                name = "Unknown";
+                entry.addAuthor(name);
+                System.out.println("Author added.");
+                break; 
             }
 
             Author author = register.findAuthor(name);
             if (author != null) {
-                entry.addAuthor(author);
+                entry.addAuthor(author.getName()); 
                 System.out.println("Author added.");
                 break;
             } else {
@@ -134,7 +134,7 @@ public class DiaryKlient {
         for (Author a : register.getAuthors()) {
             System.out.println(a);
         }
-    }
+    }   
 
     private static void showAllEntries() {
         System.out.println("\n-- All entries --");
@@ -157,5 +157,21 @@ public class DiaryKlient {
 
     private static int amountOfEntries() {
         return register.getEntries().size();
+    }
+
+    private static void findAuthorEntries() {
+        System.out.print("Write author name: ");
+        String name = scanner.nextLine();
+        Author author = register.findAuthor(name);
+        if (author != null) {
+            System.out.println("\n-- Entries by " + author.getName() + " --");
+            for (Diary d : register.getEntries()) {
+                if (d.getAuthors().contains(author)) {
+                    System.out.println(d);
+                }
+            }
+        } else {
+            System.out.println("No author found.");
+        }
     }
 }

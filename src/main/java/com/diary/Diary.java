@@ -14,7 +14,13 @@ public class Diary {
     }
 
     public void addAuthor(Author author) {
+        if (author == null) return;
         authors.add(author);
+    }
+
+    public void addAuthor(String name) {
+        if (name == null || name.isBlank()) return;
+        authors.add(new Author(name));
     }
 
     public String getDate() {
@@ -30,12 +36,13 @@ public class Diary {
     }
 
     public String toString() {
-        String text = "Date: " + date + "\n" +
-                      "Content: " + content + "\n" +
-                      "Authors: ";
+        StringBuilder text = new StringBuilder();
+        text.append("Date: ").append(date).append("\n")
+            .append("Content: ").append(content).append("\n")
+            .append("Authors: ");
         for (Author a : authors) {
-            text += a.getName() + " ";
+            text.append(a.getName()).append(" ");
         }
-        return text + "\n";
+        return text.toString().trim() + "\n";
     }
 }
