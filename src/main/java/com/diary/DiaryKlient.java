@@ -10,12 +10,12 @@ public class DiaryKlient {
         
         int choice = 0;
         do {
-            System.out.println("\n--- DiaryRegistry ---");
+            System.out.println("\n--- Diary ---");
             System.out.println("1. Register new author");
-            System.out.println("2. Print all entries");
-            System.out.println("3. Delete entry");
-            System.out.println("4. Register new entry");
-            System.out.println("5. Print all authors");
+            System.out.println("2. Print all authors");
+            System.out.println("3. Register new entry");
+            System.out.println("4. Print all entries");
+            System.out.println("5. Delete entry");
             System.out.println("6. Find entries by author");
             System.out.println("0. Exit");
             System.out.print("Select: ");
@@ -28,26 +28,23 @@ public class DiaryKlient {
 
             switch (choice) {
                 case 1:
-                    registerAuthor();
-                    break;
+                registerAuthor();
+                break;
                 case 2:
-                    showAllEntries();
-                    break;
+                showAllAuthors();
+                break;
                 case 3:
-                    deleteEntry();
-                    break;
+                registerDiary();
+                break;
                 case 4:
-                    registerDiary();
-                    break;
+                showAllEntries();
+                break;
                 case 5:
-                    showAllAuthors();
-                    break;
+                deleteEntry();
+                break;
                 case 6:
-                    findAuthorEntries();
-                    break;
-                case 0:
-                    System.out.println("Exited!");
-                    break;
+                findAuthorEntries();
+                break;
                 default:
                     System.out.println("Invalid selection, try again.");
             }
