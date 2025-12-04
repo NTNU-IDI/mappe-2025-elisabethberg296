@@ -130,11 +130,15 @@ public class DiaryKlient {
     }
 
     private static void showAllAuthors() {
-        System.out.println("\n-- All authors --");
-        for (Author a : register.getAuthors()) {
-            System.out.println(a);
-        }
-    }   
+    System.out.println("\n-- All authors --");
+    int i = 1;
+    for (Author a : register.getAuthors()) {
+      
+      System.out.println("Author " + i + ": " + a);
+      i += 1;
+      
+    }
+  }  
 
     private static void showAllEntries() {
         System.out.println("\n-- All entries --");
