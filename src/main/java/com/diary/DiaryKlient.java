@@ -224,7 +224,7 @@ public class DiaryKlient {
     for (Diary d : register.getEntries()) {
       String dt = d.getDate();
       if (dt.compareTo(startDate) >= 0 && dt.compareTo(endDate) <= 0) {
-        System.out.println((d) + "\n");
+        System.out.println(d + "\n");
       }
     }
   }
