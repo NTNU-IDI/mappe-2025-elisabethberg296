@@ -2,10 +2,17 @@ package com.diary;
 
 import java.util.Scanner;
 
+/**
+ * DiaryKlient class that makes use of the DiaryRegistry to manage authors and diary entries.
+ * It provides a console-based interface for users to interact with the diary system.
+ */
 public class DiaryKlient {
   private static Scanner scanner = new Scanner(System.in);
   private static DiaryRegistry register = new DiaryRegistry();
 
+/**
+* Main method to run the DiaryKlient application.
+*/
   public static void main(String[] args) {
     initializeData();  
         

@@ -2,12 +2,18 @@ package com.diary;
 
 import java.util.ArrayList;
 
+/**
+ * Diary class that represents a diary entry with date, title, contentand author. 
+ */
 public class Diary {
   private String date;
   private String title;
   private String content;
   private ArrayList<Author> authors;
 
+  /**
+   * Constructor for Diary class.
+   */
   public Diary(String date, String title, String content) {
     this.date = date;
     this.title = title;
@@ -15,6 +21,9 @@ public class Diary {
     this.authors = new ArrayList<>();
   }
 
+  /**
+   * Adds an author to the diary entry.
+   */
   public void addAuthor(Author author) {
     if (author == null) {
       return;
@@ -22,6 +31,9 @@ public class Diary {
     authors.add(author);
   }
 
+  /**
+   * Adds an author to the diary entry by name.
+   */
   public void addAuthor(String name) {
     if (name == null || name.isBlank()) {
       return;
@@ -45,6 +57,9 @@ public class Diary {
     return authors;
   }
 
+  /**
+   * Returns the diary entry as string.
+   */
   public String toString() {
     StringBuilder text = new StringBuilder();
     text.append("Date: ").append(date).append("\n")
