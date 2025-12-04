@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 public class Diary {
     private String date;
+    private String title;
     private String content;
     private ArrayList<Author> authors;
 
-    public Diary(String date, String content) {
+    public Diary(String date, String title, String content) {
         this.date = date;
+        this.title = title;
         this.content = content;
         this.authors = new ArrayList<>();
     }
@@ -38,6 +40,7 @@ public class Diary {
     public String toString() {
         StringBuilder text = new StringBuilder();
         text.append("Date: ").append(date).append("\n")
+            .append("Title: ").append(title).append("\n")
             .append("Content: ").append(content).append("\n")
             .append("Authors: ");
         for (Author a : authors) {

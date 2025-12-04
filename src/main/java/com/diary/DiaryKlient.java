@@ -65,15 +65,15 @@ public class DiaryKlient {
         register.registerAuthor(author3);
         
         
-        Diary entry1 = new Diary("2025-11-11", "Entry1");
+        Diary entry1 = new Diary("2025-11-11", "Title1",  "Entry1");
         entry1.addAuthor(author1);
         register.registerEntry(entry1);
         
-        Diary entry2 = new Diary("2025-11-12", "Entry2");
+        Diary entry2 = new Diary("2025-11-12", "Title2",  "Entry2");
         entry2.addAuthor(author2);
         register.registerEntry(entry2);
         
-        Diary entry3 = new Diary("2025-11-11", "Entry3");
+        Diary entry3 = new Diary("2025-11-11", "Title3",  "Entry3");
         entry3.addAuthor(author3);
         register.registerEntry(entry3);
     }
@@ -100,10 +100,12 @@ public class DiaryKlient {
     private static void registerDiary() {
         System.out.print("Date (e.g. 2025-11-12): ");
         String date = scanner.nextLine();
+        System.out.print("Entry title: ");
+        String title = scanner.nextLine();
         System.out.print("Entry text: ");
         String content = scanner.nextLine();
 
-        Diary entry = new Diary(date, content);
+        Diary entry = new Diary(date, title, content);
 
         while (true) {
             System.out.print("Add author to entry (blank for unknown author): ");
