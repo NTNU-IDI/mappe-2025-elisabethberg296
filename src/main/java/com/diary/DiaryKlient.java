@@ -141,21 +141,15 @@ public class DiaryKlient {
     }
 
     private static void showAllAuthors() {
-    System.out.println("\n-- All authors --");
-    int i = 1;
-    for (Author a : register.getAuthors()) {
-      
-      System.out.println("Author " + i + ": " + a);
-      i += 1;
-      
+        System.out.println("\n-- All authors --");
+        register.getAuthors().stream()
+        .forEach(a -> System.out.println(a));
     }
-  }  
 
     private static void showAllEntries() {
         System.out.println("\n-- All entries --");
-        for (Diary d : register.getEntries()) {
-            System.out.println(d);
-        }
+        register.getEntries().stream()
+        .forEach(d -> System.out.println(d));
     }
 
     private static void deleteEntry() {
@@ -192,17 +186,16 @@ public class DiaryKlient {
         String name = scanner.nextLine();
         Author author = register.findAuthor(name);
         if (author != null) {
-            System.out.println("\n-- Entries by " + author.getName() + " --");
-            for (Diary d : register.getEntries()) {
-                if (d.getAuthors().contains(author)) {
-                    System.out.println(d);
-                }
-            }
+        System.out.println("\n-- Entries by " + author.getName() + " --");
+        register.getEntries().stream()
+            .filter(d -> d.getAuthors().contains(author))
+            .forEach(d -> System.out.println(d));
         } else {
-            System.out.println("No author found.");
+        System.out.println("No author found.");
         }
     }
-        private static String withoutDate(Diary d) { // makes sure the date is not printed twice
+
+    private static String withoutDate(Diary d) { // makes sure the date is not printed twice
         String s = d.toString();
         int nl = s.indexOf('\n');
         return (nl >= 0) ? s.substring(nl + 1).trim() : s.trim();
@@ -212,36 +205,31 @@ public class DiaryKlient {
         System.out.print("Enter date (e.g. 2025-11-11): ");
         String date = scanner.nextLine();
         System.out.println("\n-- Entries on " + date + " --");
-        for (Diary d : register.getEntries()) {
-        if (date.equals(d.getDate())) {
-            System.out.println(withoutDate(d) + "\n");
-        }
-        }
+        register.getEntries().stream()
+        .filter(d -> date.equals(d.getDate()))
+        .forEach(d -> System.out.println(withoutDate(d) + "\n"));
     }
 
     private static void findEntriesByDateRange() {
-    System.out.print("Enter start date (e.g. 2025-11-10): ");
-    String startDate = scanner.nextLine();
-    System.out.print("Enter end date (e.g. 2025-11-20): ");
-    String endDate = scanner.nextLine();
-    System.out.println("\n-- Entries from " + startDate + " to " + endDate + " --");
-    for (Diary d : register.getEntries()) {
-        String dt = d.getDate();
-        if (dt.compareTo(startDate) >= 0 && dt.compareTo(endDate) <= 0) {
-            System.out.println(d + "\n");
-        }
-        }
+        System.out.print("Enter start date (e.g. 2025-11-10): ");
+        String startDate = scanner.nextLine();
+        System.out.print("Enter end date (e.g. 2025-11-20): ");
+        String endDate = scanner.nextLine();
+        System.out.println("\n-- Entries from " + startDate + " to " + endDate + " --");
+        register.getEntries().stream()
+        .filter(d -> d.getDate().compareTo(startDate) >= 0 && d.getDate().compareTo(endDate) <= 0)
+        .forEach(d -> System.out.println(d + "\n"));
     }
+
 
     private static void findEntriesByWord() {
         System.out.print("Enter word to search for: ");
         String word = scanner.nextLine().toLowerCase();
         System.out.println("\n-- Entries containing the word \"" + word + "\" --");
-        for (Diary d : register.getEntries()) {
-        if (d.getContent().toLowerCase().contains(word) || d.getTitle().toLowerCase().contains(word)) {
-            System.out.println(d + "\n");
-        }
-        }
+        register.getEntries().stream()
+        .filter(d -> d.getContent().toLowerCase().contains(word) || 
+                d.getTitle().toLowerCase().contains(word))
+        .forEach(d -> System.out.println(d + "\n"));
     }
 
 }
