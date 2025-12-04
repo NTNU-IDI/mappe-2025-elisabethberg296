@@ -19,6 +19,7 @@ public class DiaryKlient {
             System.out.println("6. Find entries by author");
             System.out.println("7. Find entries by date");
             System.out.println("8. Search for entries in a date range");
+            System.out.println("9. Search all entries for specific word");
             System.out.println("0. Exit");
             System.out.print("Select: ");
 
@@ -52,6 +53,9 @@ public class DiaryKlient {
                 break;
                 case 8:
                 findEntriesByDateRange();
+                break;
+                case 9:
+                findEntriesByWord();
                 break;
                 default:
                     System.out.println("Invalid selection, try again.");
@@ -222,10 +226,22 @@ public class DiaryKlient {
     String endDate = scanner.nextLine();
     System.out.println("\n-- Entries from " + startDate + " to " + endDate + " --");
     for (Diary d : register.getEntries()) {
-      String dt = d.getDate();
-      if (dt.compareTo(startDate) >= 0 && dt.compareTo(endDate) <= 0) {
-        System.out.println(d + "\n");
-      }
+        String dt = d.getDate();
+        if (dt.compareTo(startDate) >= 0 && dt.compareTo(endDate) <= 0) {
+            System.out.println(d + "\n");
+        }
+        }
     }
-  }
+
+    private static void findEntriesByWord() {
+        System.out.print("Enter word to search for: ");
+        String word = scanner.nextLine().toLowerCase();
+        System.out.println("\n-- Entries containing the word \"" + word + "\" --");
+        for (Diary d : register.getEntries()) {
+        if (d.getContent().toLowerCase().contains(word) || d.getTitle().toLowerCase().contains(word)) {
+            System.out.println(d + "\n");
+        }
+        }
+    }
+
 }
