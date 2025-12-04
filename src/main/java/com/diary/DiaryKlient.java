@@ -17,6 +17,7 @@ public class DiaryKlient {
             System.out.println("4. Print all entries");
             System.out.println("5. Delete entry");
             System.out.println("6. Find entries by author");
+            System.out.println("7. Find entries by date");
             System.out.println("0. Exit");
             System.out.print("Select: ");
 
@@ -44,6 +45,9 @@ public class DiaryKlient {
                 break;
                 case 6:
                 findAuthorEntries();
+                break;
+                case 7:
+                findEntriesByDate();
                 break;
                 default:
                     System.out.println("Invalid selection, try again.");
@@ -188,6 +192,22 @@ public class DiaryKlient {
             }
         } else {
             System.out.println("No author found.");
+        }
+    }
+        private static String withoutDate(Diary d) { // makes sure the date is not printed twice
+        String s = d.toString();
+        int nl = s.indexOf('\n');
+        return (nl >= 0) ? s.substring(nl + 1).trim() : s.trim();
+    }
+
+    private static void findEntriesByDate() {
+        System.out.print("Enter date (e.g. 2025-11-11): ");
+        String date = scanner.nextLine();
+        System.out.println("\n-- Entries on " + date + " --");
+        for (Diary d : register.getEntries()) {
+        if (date.equals(d.getDate())) {
+            System.out.println(withoutDate(d) + "\n");
+        }
         }
     }
 }
