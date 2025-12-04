@@ -47,7 +47,7 @@ public class Diary {
         text.append("Date: ").append(date).append("\n")
             .append("Title: ").append(title).append("\n")
             .append("Content: ").append(content).append("\n")
-            .append("Authors: ");
+            .append("Author: ");
         for (Author a : authors) {
             text.append(a.getName()).append(" ");
         }
