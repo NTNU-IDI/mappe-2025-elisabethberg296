@@ -18,6 +18,7 @@ public class DiaryKlient {
             System.out.println("5. Delete entry");
             System.out.println("6. Find entries by author");
             System.out.println("7. Find entries by date");
+            System.out.println("8. Search for entries in a date range");
             System.out.println("0. Exit");
             System.out.print("Select: ");
 
@@ -48,6 +49,9 @@ public class DiaryKlient {
                 break;
                 case 7:
                 findEntriesByDate();
+                break;
+                case 8:
+                findEntriesByDateRange();
                 break;
                 default:
                     System.out.println("Invalid selection, try again.");
@@ -210,4 +214,18 @@ public class DiaryKlient {
         }
         }
     }
+
+    private static void findEntriesByDateRange() {
+    System.out.print("Enter start date (e.g. 2025-11-10): ");
+    String startDate = scanner.nextLine();
+    System.out.print("Enter end date (e.g. 2025-11-20): ");
+    String endDate = scanner.nextLine();
+    System.out.println("\n-- Entries from " + startDate + " to " + endDate + " --");
+    for (Diary d : register.getEntries()) {
+      String dt = d.getDate();
+      if (dt.compareTo(startDate) >= 0 && dt.compareTo(endDate) <= 0) {
+        System.out.println((d) + "\n");
+      }
+    }
+  }
 }
