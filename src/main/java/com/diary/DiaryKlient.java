@@ -149,7 +149,8 @@ public class DiaryKlient {
     private static void showAllEntries() {
         System.out.println("\n-- All entries --");
         register.getEntries().stream()
-        .forEach(d -> System.out.println(d));
+            .sorted((e1, e2) -> e2.getDate().compareTo(e1.getDate())) // sorts by date
+            .forEach(System.out::println);
     }
 
     private static void deleteEntry() {
