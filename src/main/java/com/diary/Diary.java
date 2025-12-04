@@ -29,6 +29,11 @@ public class Diary {
         return date;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+
     public String getContent() {
         return content;
     }

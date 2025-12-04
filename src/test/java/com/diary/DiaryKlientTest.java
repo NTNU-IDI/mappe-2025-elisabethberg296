@@ -11,7 +11,7 @@ public class DiaryKlientTest {
         Author author = new Author("TestAuthor");
         registry.registerAuthor(author);
         
-        Diary diary = new Diary("2025-11-20", "Test entry");
+        Diary diary = new Diary("2025-11-20", "Test title",  "Test entry");
         diary.addAuthor(author);
         registry.registerEntry(diary);
         

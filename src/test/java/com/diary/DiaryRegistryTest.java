@@ -44,7 +44,7 @@ public class DiaryRegistryTest {
     
     @Test
     public void testRegisterEntry() {
-        Diary diary = new Diary("2025-11-20", "Test");
+        Diary diary = new Diary("2025-11-20", "Title",  "Test");
         registry.registerEntry(diary);
         
         assertEquals(1, registry.getEntries().size());
@@ -53,8 +53,8 @@ public class DiaryRegistryTest {
     
     @Test
     public void testDeleteEntry() {
-        Diary diary1 = new Diary("2025-11-20", "Entry1");
-        Diary diary2 = new Diary("2025-11-21", "Entry2");
+        Diary diary1 = new Diary("2025-11-20", "Title1", "Entry1");
+        Diary diary2 = new Diary("2025-11-21", "Title2", "Entry2");
         registry.registerEntry(diary1);
         registry.registerEntry(diary2);
         
