@@ -1,5 +1,6 @@
 package com.diary;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 /**
@@ -10,9 +11,9 @@ public class DiaryKlient {
   private static Scanner scanner = new Scanner(System.in);
   private static DiaryRegistry register = new DiaryRegistry();
 
-/**
-* Main method to run the DiaryKlient application.
-*/
+  /**
+   * Main method to run the DiaryKlient application.
+   */
   public static void main(String[] args) {
     initializeData();  
         
@@ -85,20 +86,20 @@ public class DiaryKlient {
     register.registerAuthor(author3);
         
         
-    Diary entry1 = new Diary("2025-11-11", "Title1", "Entry1");
+    Diary entry1 = new Diary("2025-11-11 10:00", "Title1", "Entry1");
     entry1.addAuthor(author1);
     register.registerEntry(entry1);
         
-    Diary entry2 = new Diary("2025-11-12", "Title2", "Entry2");
+    Diary entry2 = new Diary("2025-11-12 09:00", "Title2", "Entry2");
     entry2.addAuthor(author2);
     register.registerEntry(entry2);
         
-    Diary entry3 = new Diary("2025-11-11", "Title3",  "Entry3");
+    Diary entry3 = new Diary("2025-11-11 20:00", "Title3",  "Entry3");
     entry3.addAuthor(author3);
     register.registerEntry(entry3);
   }
 
-  private static void registerAuthor() {
+  private static void registerAuthor() { 
     System.out.print("Name: ");
     String name = scanner.nextLine();
     register.registerAuthor(new Author(name));
@@ -118,7 +119,7 @@ public class DiaryKlient {
   }
 
   private static void registerDiary() {
-    System.out.print("Date (e.g. 2025-11-12): ");
+    System.out.print("Date and time (e.g. 2025-11-12 20:00): ");
     String date = scanner.nextLine();
     System.out.print("Entry title: ");
     String title = scanner.nextLine();
@@ -142,7 +143,16 @@ public class DiaryKlient {
         entry.addAuthor(author); 
         break;
       } else {
-        System.out.println("Author not found. Try again.");
+        System.out.println("Author not found. Add this person as a new author? (yes/no): ");
+        String response = scanner.nextLine();
+        if (response.equalsIgnoreCase("yes")) {
+          Author newAuthor = new Author(name);
+          register.registerAuthor(newAuthor);
+          entry.addAuthor(newAuthor);
+          break;
+        } else {
+          System.out.println("Failed, try again.");
+        }
       }
     }
 
@@ -172,7 +182,6 @@ public class DiaryKlient {
       if (response.equalsIgnoreCase("yes")) {
         register.deleteEntry(0);
         System.out.println("Entry deleted.");
-      
       } else {
         System.out.println("Deletion cancelled.");
       }
@@ -214,21 +223,27 @@ public class DiaryKlient {
 
   private static void findEntriesByDate() {
     System.out.print("Enter date (e.g. 2025-11-11): ");
-    String date = scanner.nextLine();
+    String dateInput = scanner.nextLine();
+
+    LocalDate date = LocalDate.parse(dateInput);
+
     System.out.println("\n-- Entries on " + date + " --");
     register.getEntries().stream()
-      .filter(d -> date.equals(d.getDate()))
-      .forEach(d -> System.out.println(withoutDate(d) + "\n"));
+        .filter(e -> e.getDate().toLocalDate().equals(date))
+        .forEach(e -> System.out.println(withoutDate(e) + "\n"));
   }
 
   private static void findEntriesByDateRange() {
     System.out.print("Enter start date (e.g. 2025-11-10): ");
-    String startDate = scanner.nextLine();
+    LocalDate start = LocalDate.parse(scanner.nextLine());
     System.out.print("Enter end date (e.g. 2025-11-20): ");
-    String endDate = scanner.nextLine();
-    System.out.println("\n-- Entries from " + startDate + " to " + endDate + " --");
+    LocalDate end = LocalDate.parse(scanner.nextLine());
+    System.out.println("\n-- Entries from " + start + " to " + end + " --");
     register.getEntries().stream()
-      .filter(d -> d.getDate().compareTo(startDate) >= 0 && d.getDate().compareTo(endDate) <= 0)
+      .filter(d -> {
+        LocalDate entryDate = d.getDate().toLocalDate();
+        return !entryDate.isBefore(start) && !entryDate.isAfter(end); 
+      })
       .forEach(d -> System.out.println(d + "\n"));
   }
 
@@ -237,8 +252,8 @@ public class DiaryKlient {
     String word = scanner.nextLine().toLowerCase();
     System.out.println("\n-- Entries containing the word \"" + word + "\" --");
     register.getEntries().stream()
-      .filter(d -> d.getContent().toLowerCase().contains(word) || 
-              d.getTitle().toLowerCase().contains(word))
+      .filter(d -> d.getContent().toLowerCase().contains(word) 
+             || d.getTitle().toLowerCase().contains(word))
       .forEach(d -> System.out.println(d + "\n"));
   }
 

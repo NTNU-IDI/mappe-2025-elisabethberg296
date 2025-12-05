@@ -16,14 +16,14 @@ public class DiaryRegistry {
   public DiaryRegistry() {
     authors = new ArrayList<>();
     entries = new ArrayList<>();
-    }
+  }
 
   /**
    * Registers a new author.
    */
   public void registerAuthor(Author author) {
     authors.add(author);
-    }
+  }
 
   /**
    * Finds an author by name.
