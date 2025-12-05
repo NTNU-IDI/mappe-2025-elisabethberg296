@@ -233,10 +233,7 @@ public class DiaryKlient {
   }
 
   private static void findEntriesByDate() {
-    System.out.print("Enter date (e.g. 2025-11-11): ");
-    String dateInput = scanner.nextLine();
-
-    LocalDate date = LocalDate.parse(dateInput);
+    LocalDate date = checkValidDate("Enter date (e.g. 2025-11-11): ");
 
     System.out.println("\n-- Entries on " + date + " --");
     register.getEntries().stream()
