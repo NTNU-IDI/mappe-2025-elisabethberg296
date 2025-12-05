@@ -204,16 +204,25 @@ public class DiaryKlient {
   }
 
   private static void findAuthorEntries() {
-    System.out.print("Write author name: ");
-    String name = scanner.nextLine();
-    Author author = register.findAuthor(name);
-    if (author != null) {
-      System.out.println("\n-- Entries by " + author.getName() + " --");
-      register.getEntries().stream()
-        .filter(d -> d.getAuthors().contains(author))
-        .forEach(d -> System.out.println(d));
-    } else {
-      System.out.println("No author found.");
+    while (true) {
+
+      System.out.print("Write author name: (blank to cancel) ");
+      String name = scanner.nextLine();
+
+      if (name.isBlank()) {
+        System.out.println("Cancelled.");
+        break;
+      }
+      Author author = register.findAuthor(name);
+      if (author != null) {
+        System.out.println("\n-- Entries by " + author.getName() + " --");
+        register.getEntries().stream()
+          .filter(d -> d.getAuthors().contains(author))
+          .forEach(d -> System.out.println(d));
+        break;
+      } else {
+        System.out.println("No author found.");
+      }
     }
   }
 
