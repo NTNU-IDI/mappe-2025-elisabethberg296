@@ -121,18 +121,6 @@ public class DiaryKlient {
     }
   }
 
-  private static void findAuthor() {
-    System.out.print("Write author name: ");
-    String name = scanner.nextLine();
-    Author author = register.findAuthor(name);
-    if (author != null) {
-      System.out.println(author);
-    } else {
-      System.out.println("No author found.");
-    }
-        
-  }
-
   private static void registerDiary() {
     System.out.print("Date and time (e.g. 2025-11-12 20:00): ");
     String date = scanner.nextLine();
