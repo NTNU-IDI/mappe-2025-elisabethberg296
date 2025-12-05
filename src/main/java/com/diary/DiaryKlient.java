@@ -232,6 +232,18 @@ public class DiaryKlient {
     return (nl >= 0) ? s.substring(nl + 1).trim() : s.trim();
   }
 
+  private static LocalDate checkValidDate(String dateInput) {
+    while (true) {
+      System.out.print(dateInput);
+      String input = scanner.nextLine().trim();
+      try {
+        return LocalDate.parse(input);
+      } catch (java.time.format.DateTimeParseException e) {
+        System.out.println("Invalid date format. Use yyyy-MM-dd. Try again.");
+      }
+    }
+  }
+
   private static void findEntriesByDate() {
     LocalDate date = checkValidDate("Enter date (e.g. 2025-11-11): ");
 
