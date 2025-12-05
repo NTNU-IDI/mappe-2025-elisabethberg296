@@ -103,21 +103,14 @@ public class DiaryKlient {
   private static void registerAuthor() {
     while (true) {
       System.out.print("Name: ");
-      String input = scanner.nextLine();
-
-      try {
-        String name = Optional.ofNullable(input)
-            .map(String::trim)
-            .filter(n -> !n.isEmpty())
-            .orElseThrow(() -> new IllegalArgumentException(
-                "You cannot register an author without a name. Try again."));
-
-        register.registerAuthor(new Author(name));
-        System.out.println("Author registered.");
-        return; 
-      } catch (IllegalArgumentException e) {
-        System.out.println(e.getMessage());
+      String name = scanner.nextLine();
+      if (name.isBlank()) {
+        System.out.println("Author name cannot be blank. Try again.");
+        continue;
       }
+      register.registerAuthor(new Author(name));
+      System.out.println("Author registered.");
+      break;
     }
   }
 
