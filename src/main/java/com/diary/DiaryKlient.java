@@ -1,6 +1,7 @@
 package com.diary;
 
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.Scanner;
 
 /**
@@ -99,11 +100,25 @@ public class DiaryKlient {
     register.registerEntry(entry3);
   }
 
-  private static void registerAuthor() { 
-    System.out.print("Name: ");
-    String name = scanner.nextLine();
-    register.registerAuthor(new Author(name));
-    System.out.println("Author registered.");
+  private static void registerAuthor() {
+    while (true) {
+      System.out.print("Name: ");
+      String input = scanner.nextLine();
+
+      try {
+        String name = Optional.ofNullable(input)
+            .map(String::trim)
+            .filter(n -> !n.isEmpty())
+            .orElseThrow(() -> new IllegalArgumentException(
+                "You cannot register an author without a name. Try again."));
+
+        register.registerAuthor(new Author(name));
+        System.out.println("Author registered.");
+        return; 
+      } catch (IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+      }
+    }
   }
 
   private static void findAuthor() {
