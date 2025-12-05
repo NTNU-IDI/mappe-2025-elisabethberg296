@@ -10,13 +10,19 @@ import java.time.format.DateTimeFormatter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * DiaryKlientTest class to test the DiaryKlient.
+ */
 public class DiaryKlientTest {
 
   private DiaryRegistry registry;
   private Author author1;
   private Author author2;
   private static final DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-
+  
+  /**
+   * Setup method to initialize DiaryRegistry and authors before each test.
+   */
   @BeforeEach
   public void setUp() {
     registry = new DiaryRegistry();

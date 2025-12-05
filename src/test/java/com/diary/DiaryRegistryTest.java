@@ -9,10 +9,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * DiaryRegistryTest class to test the DiaryRegistry.
+ */
 public class DiaryRegistryTest {
     
   private DiaryRegistry registry;
-    
+  
+  /**
+   * Setup method to initialize DiaryRegistry before each test.
+   */
   @BeforeEach
   public void setUp() {
     registry = new DiaryRegistry();

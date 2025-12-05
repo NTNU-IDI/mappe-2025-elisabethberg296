@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * AuthorTest class to test the Author class.
+ */
 public class AuthorTest {
     
   @Test
