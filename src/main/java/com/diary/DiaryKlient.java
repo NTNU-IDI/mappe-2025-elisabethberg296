@@ -254,10 +254,9 @@ public class DiaryKlient {
   }
 
   private static void findEntriesByDateRange() {
-    System.out.print("Enter start date (e.g. 2025-11-10): ");
-    LocalDate start = LocalDate.parse(scanner.nextLine());
-    System.out.print("Enter end date (e.g. 2025-11-20): ");
-    LocalDate end = LocalDate.parse(scanner.nextLine());
+    LocalDate start = checkValidDate("Enter start date (e.g. 2025-11-10): ");
+    LocalDate end = checkValidDate("Enter start date (e.g. 2025-11-11): ");
+
     System.out.println("\n-- Entries from " + start + " to " + end + " --");
     register.getEntries().stream()
       .filter(d -> {
