@@ -176,24 +176,30 @@ public class DiaryKlient {
   private static void deleteEntry() {
     showAllEntries();
 
-    if (amountOfEntries() == 1) {
-      System.out.println("Delete the only entry? (yes/no): ");
-      String response = scanner.nextLine();
-      if (response.equalsIgnoreCase("yes")) {
-        register.deleteEntry(0);
-        System.out.println("Entry deleted.");
-      } else {
-        System.out.println("Deletion cancelled.");
-      }
-    } else {
-      System.out.print("Enter index of entry to delete (1," + amountOfEntries() + "): ");
-      int index = Integer.parseInt(scanner.nextLine()) - 1;
-      boolean removed = register.deleteEntry(index);
-      if (removed) {
-        System.out.println("Entry deleted.");
-      } else {
-        System.out.println("No entry found for that index.");
-      }
+    switch (amountOfEntries()) {
+      case 1:
+        System.out.println("Delete the only entry? (yes/no): ");
+        String response = scanner.nextLine();
+        if (response.equalsIgnoreCase("yes")) {
+          register.deleteEntry(0);
+          System.out.println("Entry deleted.");
+        } else {
+          System.out.println("Deletion cancelled.");
+        }      
+        break;
+      case 0:
+        System.out.println("No entries to delete.");
+        break;
+      default:
+        System.out.print("Enter index of entry to delete (1," + amountOfEntries() + "): ");
+        int index = Integer.parseInt(scanner.nextLine()) - 1;
+        boolean removed = register.deleteEntry(index);
+        if (removed) {
+          System.out.println("Entry deleted.");
+        } else {
+          System.out.println("No entry found for that index.");
+        }       
+        break;
     }
   }
 
