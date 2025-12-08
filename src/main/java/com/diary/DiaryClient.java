@@ -95,6 +95,22 @@ public class DiaryClient {
     } while (choice != 0);
   }
 
+    private static void printMenu() {
+    System.out.println("\n--- Diary ---");
+    System.out.println("1. Register new author");
+    System.out.println("2. Print all authors");
+    System.out.println("3. Register new entry");
+    System.out.println("4. Print all entries");
+    System.out.println("5. Delete entry");
+    System.out.println("6. Find entries by author");
+    System.out.println("7. Find entries by date");
+    System.out.println("8. Search for entries in a date range");
+    System.out.println("9. Search all entries for specific word");
+    System.out.println("10. Statistics for each author");
+    System.out.println("0. Exit");
+    System.out.print("Select: ");
+  }
+
 
   private static void registerAuthor() {
     while (true) {
