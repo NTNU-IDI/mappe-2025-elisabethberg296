@@ -10,9 +10,34 @@ import java.util.Scanner;
  * It provides a console-based interface for users to interact with the diary system.
  */
 public class DiaryClient {
+
   private static Scanner scanner = new Scanner(System.in);
   private static DiaryRegistry register = new DiaryRegistry();
 
+  /**
+   * Initializes authors and example entries.
+   */
+  public static void init() {
+    Author author1 = new Author("First author");
+    Author author2 = new Author("Second author");
+    Author author3 = new Author("Third author");
+
+    register.registerAuthor(author1);
+    register.registerAuthor(author2);
+    register.registerAuthor(author3);
+
+    Diary entry1 = new Diary("2025-11-11 10:00", "Title1", "Entry1");
+    entry1.addAuthor(author1);
+    register.registerEntry(entry1);
+
+    Diary entry2 = new Diary("2025-11-12 09:00", "Title2", "Entry2");
+    entry2.addAuthor(author2);
+    register.registerEntry(entry2);
+
+    Diary entry3 = new Diary("2025-11-11 20:00", "Title3", "Entry3");
+    entry3.addAuthor(author3);
+    register.registerEntry(entry3);
+  }
   /**
    * Main method to run the DiaryKlient application.
    */
