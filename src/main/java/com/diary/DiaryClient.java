@@ -312,4 +312,17 @@ private static void registerDiary() {
     }
   }
 
+    private static void authorStatistics() {
+    System.out.println("\n-- Author Statistics --");
+    System.out.printf("%-20s | %s%n", "Authors", "Entries");
+    System.out.println("---------------------|--------");
+
+    for (Author author : register.getAuthors()) {
+      long count = register.getEntries().stream()
+          .filter(d -> d.getAuthors().contains(author))
+          .count();
+      System.out.printf("%-20s | %d%n", author.getName(), count);
+    }
+  }
+
 }
