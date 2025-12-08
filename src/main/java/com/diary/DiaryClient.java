@@ -1,7 +1,8 @@
 package com.diary;
 
 import java.time.LocalDate;
-import java.util.Optional;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 /**

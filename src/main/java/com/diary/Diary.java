@@ -1,9 +1,8 @@
 package com.diary;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
+import java.util.ArrayList;
 
 /**
  * Diary class that represents a diary entry with date, title, contentand author. 
