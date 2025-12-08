@@ -131,7 +131,7 @@ public class DiaryClient {
       break;
     }
   }
-  
+
 private static void registerDiary() {
     String date;
     
@@ -176,6 +176,10 @@ private static void registerDiary() {
         }
       }
     }
+
+    register.registerEntry(entry);
+    System.out.println("Entry registered.");
+  }
 
   private static void deleteEntry() {
     showAllEntries();
