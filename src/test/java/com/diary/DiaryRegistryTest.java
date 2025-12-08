@@ -76,4 +76,19 @@ public class DiaryRegistryTest {
     boolean deleted = registry.deleteEntry(5);
     assertFalse(deleted);
   }
+
+  @Test
+  public void testWhenIndexOutOfRange() {
+    registry = new DiaryRegistry();
+    boolean result = registry.deleteEntry(10); 
+    assertFalse(result);
+  }
+
+  @Test
+  public void testFindNonExistingAuthor() {
+    registry = new DiaryRegistry();
+      Author author = registry.findAuthor("NonExistent");
+      assertNull(author);
+  }
+  
 }

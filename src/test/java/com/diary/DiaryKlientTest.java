@@ -2,11 +2,16 @@ package com.diary;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -157,5 +162,12 @@ public class DiaryKlientTest {
     String s = d.toString();
     int nl = s.indexOf('\n');
     return (nl >= 0) ? s.substring(nl + 1).trim() : s.trim();
+  }
+
+  @Test
+  public void testDiaryCreationInvalidDate() {
+    assertThrows(DateTimeParseException.class, () -> {
+      new Diary("invalid-date", "Title", "Content");
+    });
   }
 }

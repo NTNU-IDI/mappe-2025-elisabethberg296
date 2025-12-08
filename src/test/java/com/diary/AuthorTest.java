@@ -20,4 +20,12 @@ public class AuthorTest {
     Author author = new Author("Bob");
     assertEquals("Bob", author.toString());
   }
+
+  @Test
+    public void testAddAuthorByNameBlank() {
+        Diary diary = new Diary("2025-12-08 10:00", "Title", "Content");
+        diary.addAuthorByName(""); 
+        diary.addAuthorByName(null); 
+        assertEquals(0, diary.getAuthors().size());
+    }
 }
