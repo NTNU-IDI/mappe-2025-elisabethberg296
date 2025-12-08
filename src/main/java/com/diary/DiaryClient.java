@@ -38,6 +38,63 @@ public class DiaryClient {
     entry3.addAuthor(author3);
     register.registerEntry(entry3);
   }
+  
+  /**
+   * Starts the program loop and reads user actions.
+   */
+  public static void start() {
+    int choice = -1;
+
+    do {
+      printMenu();
+
+      try {
+        choice = Integer.parseInt(scanner.nextLine());
+      } catch (NumberFormatException e) {
+        choice = -1;
+      }
+
+      switch (choice) {
+        case 1:
+          registerAuthor();
+          break;
+        case 2:
+          showAllAuthors();
+          break;
+        case 3:
+          registerDiary();
+          break;
+        case 4:
+          showAllEntries();
+          break;
+        case 5:
+          deleteEntry();
+          break;
+        case 6:
+          findAuthorEntries();
+          break;
+        case 7:
+          findEntriesByDate();
+          break;
+        case 8:
+          findEntriesByDateRange();
+          break;
+        case 9:
+          findEntriesByWord();
+          break;
+        case 10:
+          authorStatistics();
+          break;
+        case 0:
+          System.out.println("Exited!");
+          break;
+        default:
+          System.out.println("Invalid selection, try again.");
+      }
+
+    } while (choice != 0);
+  }
+
   /**
    * Main method to run the DiaryKlient application.
    */
