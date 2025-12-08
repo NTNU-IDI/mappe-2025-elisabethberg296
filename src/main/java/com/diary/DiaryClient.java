@@ -131,10 +131,21 @@ public class DiaryClient {
       break;
     }
   }
-
-  private static void registerDiary() {
-    System.out.print("Date and time (e.g. 2025-11-12 20:00): ");
-    String date = scanner.nextLine();
+  
+private static void registerDiary() {
+    String date;
+    
+    while (true) {
+      System.out.print("Date and time (e.g. 2025-11-12 20:00): ");
+      date = scanner.nextLine();
+      try {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime.parse(date, formatter);
+        break;
+      } catch (Exception e) {
+        System.out.println("Invalid date format. Try again.");
+      }
+    }
     System.out.print("Entry title: ");
     String title = scanner.nextLine();
     System.out.print("Entry text: ");
@@ -143,17 +154,13 @@ public class DiaryClient {
     Diary entry = new Diary(date, title, content);
 
     while (true) {
-      System.out.print("Add author to entry (blank for unknown): ");
+      showAllAuthors();
+      System.out.print("Add author to the entry: ");
       String name = scanner.nextLine();
-      if (name.isBlank()) {
-        Author unknown = new Author("Unknown");
-        register.registerAuthor(unknown);
-        entry.addAuthor(unknown);
-        break;
-      }
 
       Author author = register.findAuthor(name);
       if (author != null) {
+
         entry.addAuthor(author); 
         break;
       } else {
@@ -169,23 +176,6 @@ public class DiaryClient {
         }
       }
     }
-
-    register.registerEntry(entry);
-    System.out.println("Entry registered.");
-  }
-
-  private static void showAllAuthors() {
-    System.out.println("\n-- All authors --");
-    register.getAuthors().stream()
-      .forEach(a -> System.out.println(a));
-  }
-
-  private static void showAllEntries() {
-    System.out.println("\n-- All entries --");
-    register.getEntries().stream()
-        .sorted((e1, e2) -> e2.getDate().compareTo(e1.getDate())) // sorts by date
-        .forEach(System.out::println);
-  }
 
   private static void deleteEntry() {
     showAllEntries();
