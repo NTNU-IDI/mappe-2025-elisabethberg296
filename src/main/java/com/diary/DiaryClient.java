@@ -181,6 +181,12 @@ private static void registerDiary() {
     System.out.println("Entry registered.");
   }
 
+    private static void showAllAuthors() {
+    System.out.println("\n-- All authors --");
+    register.getAuthors().stream()
+      .forEach(a -> System.out.println(a));
+  }
+
   private static void deleteEntry() {
     showAllEntries();
 
