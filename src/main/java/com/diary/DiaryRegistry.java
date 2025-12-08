@@ -60,13 +60,7 @@ public class DiaryRegistry {
     if (index >= 0 && index < entries.size()) {
       entries.remove(index);
       return true;
-      }
+    }
     return false;
   }
-
-    
-    // public int amountOfEntries() {
-    //     int a = entries.size(); 
-    //     return a;
-    // }
 }
