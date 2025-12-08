@@ -115,10 +115,16 @@ public class DiaryClient {
   private static void registerAuthor() {
     while (true) {
       System.out.print("Name: ");
-      String name = scanner.nextLine();
+      String name = scanner.nextLine().trim();
+
       if (name.isBlank()) {
         System.out.println("Author name cannot be blank. Try again.");
         continue;
+      }
+
+      if (register.findAuthor(name) != null) {
+        System.out.println("Author " + name + " already exists. Try a different name.");
+        continue; 
       }
       register.registerAuthor(new Author(name));
       System.out.println("Author registered.");
