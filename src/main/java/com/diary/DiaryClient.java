@@ -38,7 +38,7 @@ public class DiaryClient {
     entry3.addAuthor(author3);
     register.registerEntry(entry3);
   }
-  
+
   /**
    * Starts the program loop and reads user actions.
    */
@@ -95,93 +95,6 @@ public class DiaryClient {
     } while (choice != 0);
   }
 
-  /**
-   * Main method to run the DiaryKlient application.
-   */
-  public static void main(String[] args) {
-    initializeData();  
-        
-    int choice = 0;
-    do {
-      System.out.println("\n--- Diary ---");
-      System.out.println("1. Register new author");
-      System.out.println("2. Print all authors");
-      System.out.println("3. Register new entry");
-      System.out.println("4. Print all entries");
-      System.out.println("5. Delete entry");
-      System.out.println("6. Find entries by author");
-      System.out.println("7. Find entries by date");
-      System.out.println("8. Search for entries in a date range");
-      System.out.println("9. Search all entries for specific word");
-      System.out.println("0. Exit");
-      System.out.print("Select: ");
-
-      try {   
-        choice = Integer.parseInt(scanner.nextLine());
-      } catch (NumberFormatException e) {
-        choice = -1;
-      }
-
-      switch (choice) {
-        case 1:
-          registerAuthor();
-          break;
-        case 2:
-          showAllAuthors();
-          break;
-        case 3:
-          registerDiary();
-          break;
-        case 4:
-          showAllEntries();
-          break;
-        case 5:
-          deleteEntry();
-          break;
-        case 6:
-          findAuthorEntries();
-          break;
-        case 7:
-          findEntriesByDate();
-          break;
-        case 8:
-          findEntriesByDateRange();
-          break;
-        case 9:
-          findEntriesByWord();
-          break;
-        case 0:
-          System.out.println("Exited!");
-          break;
-        default:
-          System.out.println("Invalid selection, try again.");
-      }
-    } while (choice != 0);
-  }
-
-  private static void initializeData() {
-        
-    Author author1 = new Author("First author");
-    Author author2 = new Author("Second author");
-    Author author3 = new Author("Third author");
-        
-    register.registerAuthor(author1);
-    register.registerAuthor(author2);
-    register.registerAuthor(author3);
-        
-        
-    Diary entry1 = new Diary("2025-11-11 10:00", "Title1", "Entry1");
-    entry1.addAuthor(author1);
-    register.registerEntry(entry1);
-        
-    Diary entry2 = new Diary("2025-11-12 09:00", "Title2", "Entry2");
-    entry2.addAuthor(author2);
-    register.registerEntry(entry2);
-        
-    Diary entry3 = new Diary("2025-11-11 20:00", "Title3",  "Entry3");
-    entry3.addAuthor(author3);
-    register.registerEntry(entry3);
-  }
 
   private static void registerAuthor() {
     while (true) {
