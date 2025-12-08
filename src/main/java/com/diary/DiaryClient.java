@@ -8,7 +8,7 @@ import java.util.Scanner;
  * DiaryKlient class that makes use of the DiaryRegistry to manage authors and diary entries.
  * It provides a console-based interface for users to interact with the diary system.
  */
-public class DiaryKlient {
+public class DiaryClient {
   private static Scanner scanner = new Scanner(System.in);
   private static DiaryRegistry register = new DiaryRegistry();
 
