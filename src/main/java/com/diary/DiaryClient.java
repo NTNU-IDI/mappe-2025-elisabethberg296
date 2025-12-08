@@ -181,17 +181,21 @@ private static void registerDiary() {
     System.out.println("Entry registered.");
   }
 
-    private static void showAllAuthors() {
+  private static void showAllAuthors() {
     System.out.println("\n-- All authors --");
     register.getAuthors().stream()
       .forEach(a -> System.out.println(a));
   }
 
-    private static void showAllEntries() {
+  private static void showAllEntries() {
     System.out.println("\n-- All entries --");
     register.getEntries().stream()
         .sorted((e1, e2) -> e2.getDate().compareTo(e1.getDate())) // sorts by date
         .forEach(System.out::println);
+  }
+
+  private static int amountOfEntries() {
+    return register.getEntries().size();
   }
 
   private static void deleteEntry() {
