@@ -305,6 +305,11 @@ private static void registerDiary() {
       .filter(d -> d.getContent().toLowerCase().contains(word) 
              || d.getTitle().toLowerCase().contains(word))
       .forEach(d -> System.out.println(d + "\n"));
+    if (register.getEntries().stream()
+        .noneMatch(d -> d.getContent().toLowerCase().contains(word) 
+             || d.getTitle().toLowerCase().contains(word))) {
+      System.out.println("No entries found containing the word \"" + word + "\".");
+    }
   }
 
 }
