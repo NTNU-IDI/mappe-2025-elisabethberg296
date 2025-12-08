@@ -18,6 +18,9 @@ public class Diary {
 
   /**
    * Constructor for Diary class.
+
+   * @param date    The date of the diary entry in "yyyy-MM-dd HH:mm" format.
+   * @param title   The title of the diary entry.
    */
   public Diary(String date, String title, String content) {
     this.date = LocalDateTime.parse(date, f);
@@ -28,6 +31,8 @@ public class Diary {
 
   /**
    * Adds an author to the diary entry.
+
+   * @param author The author to add.
    */
   public void addAuthor(Author author) {
     if (author == null) {
@@ -38,6 +43,8 @@ public class Diary {
 
   /**
    * Adds an author to the diary entry by name.
+
+   * @param name The name of the author to add.
    */
   public void addAuthorByName(String name) { // 
     if (name == null || name.isBlank()) {
@@ -64,6 +71,8 @@ public class Diary {
 
   /**
    * Returns the diary entry as string.
+
+   * @return String representation of the diary entry.
    */
   @Override 
   public String toString() {

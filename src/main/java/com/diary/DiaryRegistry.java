@@ -20,6 +20,8 @@ public class DiaryRegistry {
 
   /**
    * Registers a new author.
+
+   * @param author The author to register.
    */
   public void registerAuthor(Author author) {
     authors.add(author);
@@ -27,6 +29,9 @@ public class DiaryRegistry {
 
   /**
    * Finds an author by name.
+
+   * @param name The name of the author to find.
+   * @return The Author object if found, null otherwise.
    */
   public Author findAuthor(String name) {
     for (Author a : authors) {
@@ -40,6 +45,8 @@ public class DiaryRegistry {
 
   /**
    * Registers a new diary entry.
+
+   * @param entry The diary entry to register.
    */
   public void registerEntry(Diary entry) {
     entries.add(entry);
@@ -55,6 +62,9 @@ public class DiaryRegistry {
 
   /**
    * Deletes a diary entry by index.
+
+   * @param index The index of the diary entry to delete.
+   * @return true if the entry was deleted, false otherwise.
    */
   public boolean deleteEntry(int index) {
     if (index >= 0 && index < entries.size()) {
@@ -63,4 +73,5 @@ public class DiaryRegistry {
     }
     return false;
   }
+
 }
