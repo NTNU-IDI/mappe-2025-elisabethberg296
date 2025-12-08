@@ -201,7 +201,8 @@ private static void registerDiary() {
   private static void deleteEntry() {
     showAllEntries();
 
-    switch (amountOfEntries()) {
+    int amount = amountOfEntries();
+    switch (amount) {
       case 1:
         System.out.println("Delete the only entry? (yes/no): ");
         String response = scanner.nextLine();
@@ -216,21 +217,22 @@ private static void registerDiary() {
         System.out.println("No entries to delete.");
         break;
       default:
-        System.out.print("Enter index of entry to delete (1," + amountOfEntries() + "): ");
-        int index = Integer.parseInt(scanner.nextLine()) - 1;
-        boolean removed = register.deleteEntry(index);
-        if (removed) {
-          System.out.println("Entry deleted.");
-        } else {
-          System.out.println("No entry found for that index.");
-        }       
+        System.out.print("Enter index of entry to delete (1," + amount + "): ");
+        try {
+          int index = Integer.parseInt(scanner.nextLine()) - 1;
+          boolean removed = register.deleteEntry(index);
+          if (removed) {
+            System.out.println("Entry deleted.");
+          } else {
+            System.out.println("No entry found for that index.");
+          }
+        } catch (NumberFormatException e) {
+          System.out.println("Invalid input. Deletion cancelled.");
+        }
         break;
     }
   }
 
-  private static int amountOfEntries() {
-    return register.getEntries().size();
-  }
 
   private static void findAuthorEntries() {
     while (true) {
