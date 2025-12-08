@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 /**
  * DiaryKlientTest class to test the DiaryKlient.
  */
-public class DiaryKlientTest {
+public class DiaryClientTest {
 
   private DiaryRegistry registry;
   private Author author1;
