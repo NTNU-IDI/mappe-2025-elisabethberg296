@@ -22,6 +22,7 @@ The program starts in the console and waits for user input. You can enter data s
 - Time (format: HH:MM)
 - Title (a short text string)
 - Entry text (your main content string)
+
 After entering an index or selecting a menu option, the program will display the corresponding output in text form.
 The program will continue running until you chose the option to close it. Note: all input data is temporary and will not be saved after closing the program.
 
@@ -29,6 +30,7 @@ The program will continue running until you chose the option to close it. Note: 
 To run all tests, you can either:
 - Use Maven: run mvn test in the project directory.
 - Run tests directly from your IDE (e.g., right-click the test class and select "Run").
+
 The test results will be displayed in the console, showing which tests passed or failed.
 
 ## References
