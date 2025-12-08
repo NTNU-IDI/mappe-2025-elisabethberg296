@@ -11,8 +11,8 @@ import java.util.Scanner;
  */
 public class DiaryClient {
 
-  private static Scanner scanner = new Scanner(System.in);
-  private static DiaryRegistry register = new DiaryRegistry();
+  private static final Scanner scanner = new Scanner(System.in);
+  private static final DiaryRegistry register = new DiaryRegistry();
 
   /**
    * Initializes authors and example entries.

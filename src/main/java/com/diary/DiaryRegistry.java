@@ -1,8 +1,5 @@
 package com.diary;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
 import java.util.ArrayList;
 
 /**
@@ -10,8 +7,8 @@ import java.util.ArrayList;
  */
 public class DiaryRegistry {
 
-  private ArrayList<Author> authors;
-  private ArrayList<Diary> entries;
+  private final ArrayList<Author> authors;
+  private final ArrayList<Diary> entries;
   
   /**
    * Constructor for DiaryRegistry class.

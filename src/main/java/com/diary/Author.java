@@ -6,7 +6,7 @@ package com.diary;
  * and provides methods to retrieve the author's name and a string representation of the author.
  */
 public class Author {
-  private String name;
+  private final String name;
   /**
    * Constructor for Author class.
    */
@@ -22,6 +22,7 @@ public class Author {
   /**
    * Returns the name of the author as string.
    */
+  @Override
   public String toString() {
     return name;
   }

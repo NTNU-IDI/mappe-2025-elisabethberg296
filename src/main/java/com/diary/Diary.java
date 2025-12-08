@@ -8,10 +8,10 @@ import java.util.ArrayList;
  * Diary class that represents a diary entry with date, title, contentand author. 
  */
 public class Diary {
-  private LocalDateTime date;
-  private String title;
-  private String content;
-  private ArrayList<Author> authors;
+  private final LocalDateTime date;
+  private final String title;
+  private final String content;
+  private final ArrayList<Author> authors;
 
   private static final DateTimeFormatter f =
        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
