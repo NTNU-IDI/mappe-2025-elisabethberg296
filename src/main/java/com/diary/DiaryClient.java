@@ -18,23 +18,23 @@ public class DiaryClient {
    * Initializes authors and example entries.
    */
   public static void init() {
-    Author author1 = new Author("First author");
-    Author author2 = new Author("Second author");
-    Author author3 = new Author("Third author");
+    Author author1 = new Author("Bob Bobertson");
+    Author author2 = new Author("Brad Bradson");
+    Author author3 = new Author("Bart Bartson");
 
     register.registerAuthor(author1);
     register.registerAuthor(author2);
     register.registerAuthor(author3);
 
-    Diary entry1 = new Diary("2025-11-11 10:00", "Title1", "Entry1");
+    Diary entry1 = new Diary("2025-11-11 10:00", "Ski-trip", "Today I went skiing, it was very fun.");
     entry1.addAuthor(author1);
     register.registerEntry(entry1);
 
-    Diary entry2 = new Diary("2025-11-12 09:00", "Title2", "Entry2");
+    Diary entry2 = new Diary("2025-11-12 09:00", "Baking", "I baked a cake today.");
     entry2.addAuthor(author2);
     register.registerEntry(entry2);
 
-    Diary entry3 = new Diary("2025-11-11 20:00", "Title3", "Entry3");
+    Diary entry3 = new Diary("2025-11-11 20:00", "Nothing", "I did not do anything special today.");
     entry3.addAuthor(author3);
     register.registerEntry(entry3);
   }

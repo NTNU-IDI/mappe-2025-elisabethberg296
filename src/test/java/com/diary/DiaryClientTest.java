@@ -50,9 +50,11 @@ public class DiaryClientTest {
   public void testWithoutDateRemovesFirstLine() {
     Diary diary = new Diary("2025-11-20 00:00", "Title", "Content");
     diary.addAuthor(author1);
-        
-    String withoutDate = withoutDate(diary);
-        
+
+    String s = diary.toString();
+    int nl = s.indexOf('\n');
+    String withoutDate = (nl >= 0) ? s.substring(nl + 1).trim() : s.trim();
+
     assertFalse(withoutDate.contains("Date: 2025-11-20 00:00"));
     assertTrue(withoutDate.contains("Title"));
     assertTrue(withoutDate.contains("Content"));
@@ -158,16 +160,19 @@ public class DiaryClientTest {
     assertEquals(2, countOutside);
   }
 
-  private static String withoutDate(Diary d) {
-    String s = d.toString();
-    int nl = s.indexOf('\n');
-    return (nl >= 0) ? s.substring(nl + 1).trim() : s.trim();
+  @Test
+  public void testDiaryCreationInvalidDate() {
+    DateTimeParseException ex = assertThrows(
+        DateTimeParseException.class,
+        () -> new Diary("invalid-date", "Title", "Content")
+    );
+
+    assertTrue(ex.getMessage().toLowerCase().contains("invalid"));
   }
 
   @Test
-  public void testDiaryCreationInvalidDate() {
-    assertThrows(DateTimeParseException.class, () -> {
-      new Diary("invalid-date", "Title", "Content");
-    });
+  public void testFindAuthorInvalidName() {
+    Author result = registry.findAuthor("ThisAuthorDoesNotExist");
+    assertNull(result);
   }
 }
