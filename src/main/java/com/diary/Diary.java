@@ -76,7 +76,6 @@ public class Diary {
    */
   @Override 
   public String toString() {
-    DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     StringBuilder text = new StringBuilder();
     text.append("Date and time: ").append(date.format(f)).append("\n")
         .append("Title: ").append(title).append("\n")

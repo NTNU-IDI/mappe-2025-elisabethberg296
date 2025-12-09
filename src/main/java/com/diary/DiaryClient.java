@@ -250,7 +250,7 @@ private static void registerDiary() {
         register.getEntries().stream()
           .filter(d -> d.getAuthors().contains(author))
           .forEach(d -> System.out.println(d));
-          break;
+        break;
       } else {
         System.out.println("No author found.");
       }
